@@ -2,8 +2,32 @@
 <html>
 
 <head>
+    <script>
+        src='dist/fhir-client-vs.js'
+    </script>
 </head>
 <body>
-  <a href=""launch.html?iss=https://fhir
+    <p>
+        Launch Page
+    </p>
+    <script>
+        FHIR.oauth2.authorize({
+            'client_id': '62ceaaa1-aba7-468f-a246-87f614f9550b',
+            'scope':'patient/AllergyIntolerance.read patient/Appointment.read \
+            patient/Binary.read patient/CarePlan.read patient/Condition.read \
+            patient/Contract.read patient/Device.read patient/DiagnosticReport.read \
+            patient/DocumentReference.read patient/Encounter.read patient/Goal.read \
+            patient/Immunization.read patient/MedicationAdministration.read \
+            patient/Medication0rder.read patient/MedicationStatement.read \
+            patient/Observation.read patient/Patient.read patient/Person.read \
+            patient/Procedure.read patient/ProcedureRequest.read patient/RelatedPerson.read\
+            patient/Schedule.read patient/Slot.read patient/launch\
+            patient/MedicationStatement.read patient/Observation.read \
+            patient/Patient.read patient/Person.read patient/Procedure.read \
+            patient/ProcedureRequest.read patient/RelatedPerson.read \
+            patient/Schedule.read patient/Slot.read patient/launch',
+            'redirect_uri': 'https://zachwinters.github.io/Cerner-FHIR-App/app.html',
+        });
+    </script>
 </body>
 </html>
