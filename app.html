@@ -3,8 +3,7 @@
 
 <head>
 
-  <!-- Load the official SMART on FHIR client (fhirclient) -->
-  <script src="https://cdn.jsdelivr.net/npm/fhirclient@1.4.0/dist/fhir-client.min.js"></script>
+	<script src='dist/fhir-client-v2.js'></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -44,8 +43,7 @@
       var loincs = [ encodeURIComponent("http://loinc.org|4544-3"),encodeURIComponent("http://loinc.org|444-1") ] //4544-3 = hematocrit
       var obs = await fetch(myApp.smart.state.serverUrl+"/Observation?patient="+myApp.smart.patient.id+"&limit=50&code="+loincs.join(","),{
         headers:{  
-          // use the canonical FHIR JSON media type
-          "Accept":"application/fhir+json",
+          "Accept":"application/json+fhir",
           "Authorization":"Bearer "+myApp.smart.state.tokenResponse.access_token
         }
         }).then(function(data){
@@ -54,10 +52,9 @@
 
       var response = await obs.json()
       console.log(response)
-      // Ensure Vue always has an `entry` array even when the response has none
       myApp.vue = new Vue({
-        el: "#main",
-        data: { entry: response.entry || [] }
+        el:"#main",
+        data: response
       })
 
     }
