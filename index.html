@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html>
+...
+<script src='./lib/es6-shim-0.35.1.min.js'></script>
+<script src='./src/js/example-smart-app.js'></script>
+<script src='./lib/fhir-client-v0.1.11.js'></script>
 
-<head>
+<!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
+<!-- https://github.com/cerner/fhir-client-cerner-additions -->
+<script src='./lib/fhir-client-cerner-additions-1.0.0.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+  extractData().then(
+    //Display Patient Demographics and Observations if extractData was success
+    function(p) {
+      drawVisualization(p);
+    },
 
-</head>
-
-<body>
-	<a href=" https://zachwinters.github.io/Cerner-FHIR-App.html?iss=https://fhir-myrecord.cerner.com/dstu2/ec2458f2-1e24-41c8-b71b-0e701af7583d">If you are a patient, login here!</a>
-</body>
-
-</html>
+    //Display 'Failed to call FHIR Service' if extractData failed
+    function() {
+      $('#errors').html('<p> Failed to call FHIR Service </p>');
+    }
+  );
+</script>
+...
